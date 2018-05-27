@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content">
+
+	<PreferenceCategory android:title="General options">
+
+		<ListPreference
+			android:defaultValue="0"
+			android:dialogTitle="Select Dictionary"
+			android:entries="@array/dictionarynames"
+			android:entryValues="@array/dictionaryvalues"
+			android:key="dictpref"
+			android:summary="Language variant for words"
+			android:title="Select dictionary" />
+
+		<CheckBoxPreference
+			android:defaultValue="true"
+			android:key="wakelock"
+			android:title="Keep screen on" />
+
+		<CheckBoxPreference
+			android:defaultValue="true"
+			android:key="sounds"
+			android:summary="Enable sound in main game"
+			android:title="Sound" />
+	</PreferenceCategory>
+
+</PreferenceScreen>  

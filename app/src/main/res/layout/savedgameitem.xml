@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/wordRow"
+		android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:background="#FFE0E0E0"
+        android:layout_height="fill_parent">
+  <net.cactii.target.TargetGridView  
+		android:id="@+id/savedGridView"
+	   android:layout_width="100dp" 
+	   android:layout_height="100dp"
+	   android:layout_alignParentLeft="true"
+	   android:layout_margin="15dp"
+	   />
+
+	<TextView
+	android:id="@+id/savedWordCounts"
+	android:layout_toRightOf="@+id/savedGridView"
+	android:layout_marginTop="25dp"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:textColor="#FF000000"
+	/>
+   <Button
+  	android:id="@+id/gameLoad"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:text="Load game"
+  	android:layout_alignParentRight="true"
+  	android:layout_alignParentTop="true"
+  	android:layout_marginRight="10dp"
+  	android:layout_marginTop="10dp"
+  	/>
+  <Button
+  	android:id="@+id/gameDelete"
+  	android:layout_width="wrap_content"
+  	android:layout_height="wrap_content"
+  	android:text="Delete game"
+  	android:layout_alignParentRight="true"
+  	android:layout_alignParentBottom="true"
+  	android:layout_below="@+id/gameLoad"
+  	android:layout_marginRight="10dp"
+  	/>
+</RelativeLayout>

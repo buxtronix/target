@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set>
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+       android:interpolator="@android:anim/decelerate_interpolator"
+       android:fromXScale="0.0" android:fromYScale="0.0"
+       android:toXScale="1.0" android:toYScale="1.0" android:duration="500" />
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+       android:interpolator="@android:anim/decelerate_interpolator"
+       android:fromYDelta="50%p" android:toYDelta="0.0"
+       android:fromXDelta="50%p" android:toXDelta="0.0"
+       android:duration="500"/>
+       
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+       android:interpolator="@android:anim/decelerate_interpolator"
+       android:fromYDelta="0.0" android:toYDelta="100%p"
+       android:fromXDelta="0.0" android:toXDelta="10%p"
+       android:duration="500" android:startOffset="800"/>
+
+<scale xmlns:android="http://schemas.android.com/apk/res/android"
+       android:interpolator="@android:anim/decelerate_interpolator"
+       android:fromXScale="1.0" android:fromYScale="1.0"
+       android:toXScale="0.0" android:toYScale="1.0" android:duration="500"
+       android:startOffset="800"/>
+
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+       android:interpolator="@android:anim/accelerate_interpolator"
+       android:fromAlpha="1.0" android:toAlpha="0.0" android:duration="400"
+       android:startOffset="800"/>
+</set>
