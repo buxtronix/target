@@ -45,6 +45,11 @@ public class NewGameActivity extends Activity {
   public SharedPreferences preferences;
   public SharedPreferences.Editor prefeditor = null;
 
+  public static final String NEWGAME_INTENT_WORDCOUNT = "wordcount";
+  public static final String NEWGAME_INTENT_TIMED = "timed";
+  public static final String NEWGAME_INTENT_LOADSAVED = "loadsaved";
+
+
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -85,14 +90,7 @@ public class NewGameActivity extends Activity {
           */
       }
     });
-    // Clicking SMH label selects the checkbox
-    /*
-    this.newGameSMHLabel.setOnClickListener(new OnClickListener() {
-      public void onClick(View v) {
-        newGameFromSMH.setChecked(!newGameFromSMH.isChecked());
-      }
-    });
-    */
+
     this.newGameStart.setOnClickListener(new OnClickListener() {
       public void onClick(View v) {
         if (newGameWordCount.getCheckedRadioButtonId() == -1) {
@@ -102,8 +100,8 @@ public class NewGameActivity extends Activity {
         prefeditor.putBoolean("timed_game", newGameTimed.isChecked());
         prefeditor.commit();
         Intent i = new Intent().
-        putExtra("wordcount", newGameWordCount.getCheckedRadioButtonId()).
-        putExtra("timed", newGameTimed.isChecked());
+        putExtra(NEWGAME_INTENT_WORDCOUNT, newGameWordCount.getCheckedRadioButtonId()).
+        putExtra(NEWGAME_INTENT_TIMED, newGameTimed.isChecked());
         setResult(Activity.RESULT_OK, i);
         finish();
       }
@@ -138,9 +136,9 @@ public class NewGameActivity extends Activity {
   public void onResume() {
     String dictionary = PreferenceManager.getDefaultSharedPreferences(this).getString("dictpref", "2");
     if (dictionary.equals("0") || dictionary.equals("2")) {
-      this.newGameDictLabel.setText("BRITISH words. (Change in options)");
+      this.newGameDictLabel.setText("BRITISH spelling. (Change in options)");
     } else {
-      this.newGameDictLabel.setText("AMERICAN words. (Change in options)");
+      this.newGameDictLabel.setText("AMERICAN spelling. (Change in options)");
     }
     super.onResume();
   }
@@ -182,25 +180,38 @@ public class NewGameActivity extends Activity {
     })
     .show();  
   }
+
+  private static final int MENU_OPTIONS = 1;
+  private static final int MENU_SAVELOAD = 2;
+  public static final int ACTIVITY_LOADGAME = 1;
+
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     boolean supRetVal = super.onCreateOptionsMenu(menu);
-    SubMenu menu_options = menu.addSubMenu(0, 0, 0, "Options");
+    SubMenu menu_loadgame = menu.addSubMenu(0, MENU_SAVELOAD, 0, "Load Game");
+    SubMenu menu_options = menu.addSubMenu(0, MENU_OPTIONS, 0, "Options");
     menu_options.setIcon(R.drawable.menu_options);
     return supRetVal;
-  } 
+  }
+
   @Override
   public boolean onOptionsItemSelected(MenuItem menuItem) {
     boolean supRetVal = super.onOptionsItemSelected(menuItem);
     switch (menuItem.getItemId()) {
-    case 0 :
+    case MENU_OPTIONS :
       startActivityForResult(new Intent(
           NewGameActivity.this, OptionsActivity.class), 0);
       break;
+      case MENU_SAVELOAD :
+        Intent i = new Intent().
+                putExtra(NEWGAME_INTENT_LOADSAVED, true);
+        setResult(Activity.RESULT_OK, i);
+        finish();
+        break;
     }
     return supRetVal;
   }
-  
   
   public void newVersionCheck() {
  
@@ -213,7 +224,6 @@ public class NewGameActivity extends Activity {
       prefeditor.putInt("currentversion", current_version);
       prefeditor.commit();
       this.openChangesDialog();
-      return;
     }
   }
   

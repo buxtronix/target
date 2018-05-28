@@ -111,12 +111,12 @@
 				android:textStyle="bold"
 				android:textColor="#000000" />
 			<TextView
-				android:text="Please report any issues or requests to the project page:\n\nhttp://android-target.googlecode.com/"
+				android:text="Please report any issues or requests to the project page:\n\nhttps://github.com/buxtronix/target"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:paddingLeft="15dp"
 				android:autoLink="web"
-				android:textColorLink="#ffffe0"			
+				android:textColorLink="#0000f0"
 				android:textColor="#000000" />
 			</LinearLayout>
 		</ScrollView>			
