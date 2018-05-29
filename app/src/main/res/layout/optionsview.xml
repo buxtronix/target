@@ -24,6 +24,11 @@
 			android:key="sounds"
 			android:summary="Enable sound in main game"
 			android:title="Sound" />
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="invert"
+			android:summary="Puts grid at the bottom"
+			android:title="Invert layout" />
 	</PreferenceCategory>
 
 </PreferenceScreen>  

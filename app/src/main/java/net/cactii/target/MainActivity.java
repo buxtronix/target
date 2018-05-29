@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
   
   public static final int ACTIVITY_NEWGAME = 7;
   public static final int ACTIVITY_LOADGAME = 8;
+  public static final int ACTIVITY_OPTIONS = 9;
   
   public static final int DOWNLOAD_STARTING = 0;
   public static final int DOWNLOAD_PROGRESS = 1;
@@ -131,7 +132,12 @@ public class MainActivity extends Activity {
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     
     MainActivity.setCurrent(this);
-    setContentView(R.layout.main);
+    boolean invertLayout = PreferenceManager.getDefaultSharedPreferences(MainActivity.currentInstance).getBoolean("invert", false);
+    if (invertLayout) {
+      setContentView(R.layout.maininv);
+    } else {
+      setContentView(R.layout.main);
+    }
     this.targetGrid = (TargetGridView)findViewById(R.id.targetGrid);
     this.targetGrid.mContext = this;
     this.enteredWordBox = (TextView)findViewById(R.id.enteredWord);
@@ -278,7 +284,6 @@ public class MainActivity extends Activity {
         } else {
           Intent i = new Intent(MainActivity.this, NewGameActivity.class);
           startActivityForResult(i, ACTIVITY_NEWGAME);
-          // playArea.setVisibility(View.GONE);
         }
         break;
       }
@@ -502,7 +507,7 @@ public class MainActivity extends Activity {
     }
     case MENU_OPTIONS :
       startActivityForResult(new Intent(
-          MainActivity.this, OptionsActivity.class), 0);
+          MainActivity.this, OptionsActivity.class), ACTIVITY_OPTIONS);
       break;
     case MENU_SAVELOAD :
         startActivityForResult(new Intent(
@@ -522,6 +527,10 @@ public class MainActivity extends Activity {
             return;
           }
 	}
+    if (requestCode == ACTIVITY_OPTIONS) {
+	  this.recreate();
+	  return;
+    }
     if (requestCode != ACTIVITY_NEWGAME || resultCode != Activity.RESULT_OK)
       return;
     Log.d("Target", "Got newgame result: request " + requestCode + " result "

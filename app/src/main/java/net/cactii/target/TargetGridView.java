@@ -31,6 +31,7 @@ public class TargetGridView extends View implements OnTouchListener {
   private static final int letterColor = Color.BLACK;
   private static final int letterHighlightColor = 0x90FFFF00;
   private static final int middleHighlightColor = 0x90BFBF00;
+  private static final double gridFill = 1.0;
 
   // Set paint objects
   private Paint backgroundPaint;		// Overall background
@@ -98,12 +99,12 @@ public class TargetGridView extends View implements OnTouchListener {
     
     this.currentWidth = 0;
 
-    this.setOnTouchListener((OnTouchListener) this);
+    this.setOnTouchListener(this);
     this.gameActive = false;
   }
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    // Our target grid is a square, measuring 80% of the minimum dimension
+    // Our target grid is a square, measuring 90% of the minimum dimension
     int measuredWidth = measure(widthMeasureSpec);
     int measuredHeight = measure(heightMeasureSpec);
 
@@ -119,32 +120,33 @@ public class TargetGridView extends View implements OnTouchListener {
     if (specMode == MeasureSpec.UNSPECIFIED)
       return 180;
     else
-      return (int)(specSize * 0.8);
+      return (int)(specSize * gridFill);
   }
 
   @Override
   protected void onDraw(Canvas canvas) {
-    int width = getMeasuredWidth();
-    int height = getMeasuredHeight();
+    int size = getMeasuredWidth();
+    int offset = (int)((double)size * (1-gridFill)/2);
 
-    if (width != this.currentWidth) {
-      this.centerLetterPaint.setTextSize((int)(width/5.5));
-      this.letterPaint.setTextSize((int)(width/5.5));
-      this.gridPaint.setStrokeWidth(width/50 + 1);
-      this.currentWidth = width;
+    if (size != this.currentWidth) {
+      this.centerLetterPaint.setTextSize((int)(size/5.5));
+      this.letterPaint.setTextSize((int)(size/5.5));
+      this.gridPaint.setStrokeWidth(size/50 + 1);
+      this.currentWidth = size;
     }
 
     canvas.drawARGB(0, 255, 255, 255);
 
+    // Draw the letters.
     if (!this.letters.equals(""))
       for (int index = 0 ; index < 9 ; index++)
         drawLetter(canvas, index, this.highlights[index]);
-
-    for (float x = 0 ; x <= width ; x += width/3)
-      canvas.drawLine(x, 0, x, height-1, this.gridPaint);
-
-    for (float y = 0 ; y <= height ; y += height/3)
-      canvas.drawLine(0, y, width-1, y, this.gridPaint);
+    // Draw the x grid lines.
+    for (float x = 0 ; x <= size ; x += size/3)
+      canvas.drawLine(x, 0, x, size-1, this.gridPaint);
+    // Draw the y grid lines.
+    for (float y = 0 ; y <= size ; y += size/3)
+      canvas.drawLine(0, y, size-1, y, this.gridPaint);
 
   }
 
