@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/targetCountLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true"
+            android:background="#10303030"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Good:"/>
+            <TextView
+                android:id = "@+id/targetCountGood"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Very Good:"/>
+            <TextView
+                android:id = "@+id/targetCountVeryGood"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="#FF000000"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Excellent:"/>
+            <TextView
+                android:id = "@+id/targetCountExcellent"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FF000000"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""/>
+            <TextView
+                android:id = "@+id/targetCountPlayerLabel"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:textColor="#FF007F00"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="You:"/>
+            <TextView
+                android:id = "@+id/targetCountPlayer"
+                android:layout_width="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FF007F00"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/playerWordList"
+            android:layout_width="200dp"
+            android:layout_height="220dp"
+            android:layout_alignParentEnd="true"
+            android:cacheColorHint="#00000000"
+            android:clickable="false" />
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_weight="1"
+            android:background="#10000000"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/gameTimer"
+                android:layout_width="fill_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="40dp"
+                android:progressDrawable="@drawable/progress_horizontal"
+                android:indeterminate="false"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/enteredWord"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#00DFDFC0"
+                android:cursorVisible="true"
+                android:text=""
+                android:textColor="#FF000000"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_margin="10dp">
+        <TextView
+            android:id = "@+id/timeRemaining"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF000000"
+            android:text=""/>
+        <Button
+            android:id="@+id/helpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timeRemaining"
+            android:layout_alignParentStart="true"
+            android:textSize="16sp"
+            android:text="..."/>
+
+        <net.cactii.target.TargetGridView
+            android:id="@+id/targetGrid"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible" />
+        <Button
+            android:id="@+id/submitWord"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/targetGrid"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:textSize="16sp"
+            android:text="Submit"/>
+        <Button
+            android:id="@+id/clearWord"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_below="@id/targetGrid"
+            android:layout_toStartOf="@id/submitWord"
+            android:textSize="16sp"
+            android:text="  Del  "/>
+
+    </RelativeLayout>
+</LinearLayout>
