@@ -86,11 +86,12 @@
 
         <ListView
             android:id="@+id/playerWordList"
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="220dp"
             android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
             android:cacheColorHint="#00000000"
-            android:clickable="false" />
+            android:clickable="false"/>
     </RelativeLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -133,7 +134,7 @@
             android:id = "@+id/timeRemaining"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:gravity="center"
             android:textSize="24sp"
@@ -144,22 +145,14 @@
             android:id="@+id/helpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/timeRemaining"
             android:layout_alignParentStart="true"
             android:textSize="16sp"
             android:text="..."/>
-
-        <net.cactii.target.TargetGridView
-            android:id="@+id/targetGrid"
-            android:layout_width="225dp"
-            android:layout_height="225dp"
-            android:layout_alignParentEnd="true"
-            android:visibility="invisible" />
         <Button
             android:id="@+id/submitWord"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/targetGrid"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:textSize="16sp"
             android:text="Submit"/>
@@ -167,10 +160,17 @@
             android:id="@+id/clearWord"
             android:layout_height="wrap_content"
             android:layout_width="100dp"
-            android:layout_below="@id/targetGrid"
             android:layout_toStartOf="@id/submitWord"
+            android:layout_alignParentBottom="true"
             android:textSize="16sp"
             android:text="  Del  "/>
+        <net.cactii.target.TargetGridView
+            android:id="@+id/targetGrid"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:layout_alignParentEnd="true"
+            android:layout_above="@id/submitWord"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 </LinearLayout>

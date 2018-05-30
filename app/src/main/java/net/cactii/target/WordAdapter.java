@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,9 +64,9 @@ public class WordAdapter extends BaseAdapter {
       playerWordItem.startAnimation(animation);
       playerWord.willAnimate = false;
     }
+    Spannable text = (Spannable) playerWordItem.getText();
     switch(playerWord.result) {
       case PlayerWord.RESULT_INVALID :
-        Spannable text = (Spannable) playerWordItem.getText();
         text.setSpan(new StrikethroughSpan(), 0, text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         playerWordItem.setTextColor(0xFFFF0000);
         // wordRow.setBackgroundColor(0x90FFB0B0);
@@ -74,7 +75,9 @@ public class WordAdapter extends BaseAdapter {
         break;
       case PlayerWord.RESULT_OK :
         playerWordItem.setTextColor(0xFF007F00);
-        // playerWordItemResult.setText("OK");
+        if (text.length() == 9) {
+          text.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
         break;
       case PlayerWord.RESULT_HEADER :
         wordRow.setBackgroundColor(0x8FFFFFFF);
