@@ -126,7 +126,7 @@ public class SavedGame {
     if (currentNineLetter.length() != 9 ||
         currentShuffled.length() != 9 ||
         validWords.size() < 1 ||
-        activeState.contains("active") == false) {
+        !activeState.contains("active")) {
       Log.d("Target", "Error restoring game");
       return false;
     }

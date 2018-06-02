@@ -18,7 +18,7 @@
 				android:paddingLeft="15dp"
 				android:textStyle="bold"
 				android:textColor="#000000" />
-			<TextView android:text="How many words of four letters or more can you make from the letters in the grid?\n\nEach letter can only be used once, and each word must contain the centre letter. There must be at least one nine letter word.\n\nNo plurals ending in 's', no foreign words, no words with initial capital, no hyphenated words."
+			<TextView android:text="How many words of four letters or more can you make from the letters in the grid?\n\nEach letter can only be used once, and each word must contain the centre letter. Each puzzle contains at least one nine letter word.\n\nNo plurals ending in 's', no foreign words, no words with initial capital, no hyphenated words."
 				android:id="@+id/goalText"
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
 				android:paddingLeft="15dp"
 				android:textStyle="bold"
 				android:textColor="#000000" />
-			<TextView android:text="Touch the letters in the grid to make a word, then click 'Submit' to save that word.\n\nTap 'Clear' to delete letters from the current word, or long-click to clear the entire word.\n\nTo search a word's definition, select the word in the list.\n\nWhen the timer runs out, any words you missed are displayed. Or if you're not in a timed game, select 'Score' from the menu to see how you did.\n\nAny current game will be saved whenever you leave the application."
+			<TextView android:text="Touch the letters in the grid to make a word, then click 'Submit' to save that word.\n\nTap 'DEL' to delete letters from the current word, or long-click to clear the entire word.\n\nTo search a word's definition, select the word in the list.\n\nWhen the timer runs out, any words you missed are displayed. Or if you're not in a timed game, select 'Score' from the menu to see how you did.\n\nAny current game will be saved whenever you leave the application."
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content"
 				android:textColorLink="#ffffff"

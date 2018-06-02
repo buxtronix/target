@@ -77,11 +77,11 @@ public class SavedGameList extends ListActivity {
 		this.mCurrentSaved = true;
 		int fileIndex;
 		for (fileIndex = 0 ; ; fileIndex++)
-			if (! new File(SavedGameListAdapter.SAVEDGAME_DIR + "/savedgame_" + fileIndex).exists())
+			if (! new File(this.getFilesDir().getPath() + MainActivity.saveFilename + "_" + fileIndex).exists())
 				break;
-		String filename = SavedGameListAdapter.SAVEDGAME_DIR + "/savedgame_" + fileIndex;
+		String filename = getFilesDir().getPath() + MainActivity.saveFilename + "_" + fileIndex;
 		try {
-			this.copy(new File(SavedGameListAdapter.SAVEDGAME_DIR + "/savedgame"), new File(filename));
+			this.copy(new File(getFilesDir().getPath() + MainActivity.saveFilename), new File(filename));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

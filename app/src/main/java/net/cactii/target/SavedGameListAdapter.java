@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 public class SavedGameListAdapter extends BaseAdapter {
 	
-	public static final String SAVEDGAME_DIR = "/data/data/net.cactii.target/";
 	public ArrayList<String> mGameFiles;
 	private LayoutInflater inflater;
 	private SavedGameList mContext;
@@ -60,7 +59,7 @@ public class SavedGameListAdapter extends BaseAdapter {
 	
 	public void refreshFiles() {
 		this.mGameFiles.clear();
-		File dir = new File(SAVEDGAME_DIR);
+		File dir = new File(this.mContext.getFilesDir().getPath());
 		String[] allFiles = dir.list();
 		for (String entryName : allFiles)
 			if (entryName.startsWith("savedgame_"))
@@ -102,7 +101,7 @@ public class SavedGameListAdapter extends BaseAdapter {
 		convertView = inflater.inflate(R.layout.savedgameitem, null);
 		TargetGridView grid = (TargetGridView)convertView.findViewById(R.id.savedGridView);
 
-		final String saveFile = SAVEDGAME_DIR + "/" + this.mGameFiles.get(position-1);
+		final String saveFile = this.mContext.getFilesDir().getPath() + "/" + this.mGameFiles.get(position-1);
 		
 		grid.mContext = this.mContext;
 

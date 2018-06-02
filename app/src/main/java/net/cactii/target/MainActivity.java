@@ -91,7 +91,7 @@ public class MainActivity extends Activity {
   public static MainActivity currentInstance = null;
   
   // Filename where active games are saved to.
-  public static final String saveFilename = "data/net.cactii.target/savedgame";
+  public static final String saveFilename = "/savedgame";
   
   // List of the players current words.
   public ArrayList<PlayerWord> playerWords;
@@ -289,24 +289,6 @@ public class MainActivity extends Activity {
       }
     }
   };
-
-  // Handles progress messages for the SMH download feature.
-  public Handler progressHandler = new Handler() {
-    public void handleMessage(Message msg) {
-      switch (msg.what) {
-      case DOWNLOAD_STARTING:
-        progressDialog.setIndeterminate(false);
-        break;
-      case DOWNLOAD_PROGRESS:
-        progressDialog.setProgress(msg.arg1);
-        break;
-      case DOWNLOAD_COMPLETE:
-        MainActivity.this.dismissDialog(MainActivity.DIALOG_DOWNLOADING);
-        showDialog(MainActivity.DIALOG_FETCHING);
-        break;
-      }
-    }
-  };
   
   public void handleSubmitClicked() {
     String word = targetGrid.getSelectedWord();
@@ -488,14 +470,14 @@ public class MainActivity extends Activity {
     boolean supRetVal = super.onCreateOptionsMenu(menu);
     SubMenu menu_new = menu.addSubMenu(0, MENU_NEWWORD, 0, "New game");
     menu_new.setIcon(R.drawable.menu_new);
-    SubMenu menu_saveload = menu.addSubMenu(0, MENU_SAVELOAD, 0, "Save/Load");
+    SubMenu menu_saveload = menu.addSubMenu(0, MENU_SAVELOAD, 0, "Save/Load game");
     menu_saveload.setIcon(R.drawable.menu_saveload);
     SubMenu menu_score = menu.addSubMenu(0, MENU_SCORE, 0, "Score game");
     menu_score.setIcon(R.drawable.menu_score);
-    SubMenu menu_help = menu.addSubMenu(0, MENU_INSTRUCTIONS, 0, "Help");
-    menu_help.setIcon(R.drawable.menu_help);
     SubMenu menu_options = menu.addSubMenu(0, MENU_OPTIONS, 0, "Options");
     menu_options.setIcon(R.drawable.menu_options);
+    SubMenu menu_help = menu.addSubMenu(0, MENU_INSTRUCTIONS, 0, "Help");
+    menu_help.setIcon(R.drawable.menu_help);
     return supRetVal;
   }   
 
@@ -504,7 +486,6 @@ public class MainActivity extends Activity {
     boolean supRetVal = super.onOptionsItemSelected(menuItem);
     switch (menuItem.getItemId()) {
     case MENU_NEWWORD : {
-      // selectGameType();
       Intent i = new Intent(this, NewGameActivity.class);
       startActivityForResult(i, ACTIVITY_NEWGAME);
       break;
@@ -556,34 +537,35 @@ public class MainActivity extends Activity {
         + resultCode);
     final Message msg = Message.obtain();
     Bundle extras = data.getExtras();
-    if (extras.getBoolean("fromsmh")) {
-      msg.what = DictionaryThread.MESSAGE_GET_SMH_NINELETTER;
-    } else{
-      msg.what = DictionaryThread.MESSAGE_GET_NINELETTER;
-      switch (extras.getInt("wordcount")) {
-      case R.id.newWordCount1 :
-        msg.arg1 = 1;
-        msg.arg2 = 30;
-        break;
-      case R.id.newWordCount30 :
-        msg.arg1 = 30;
-        msg.arg2 = 75;
-        break;
-      case R.id.newWordCount75 :
-        msg.arg1 = 75;
-        msg.arg2 = 500;
-        break;
-      default :
-        return;
-      }
+    if (extras.getBoolean(NewGameActivity.NEWGAME_INTENT_LOADSAVED)) {
+      startActivityForResult(new Intent(
+              MainActivity.this, SavedGameList.class), ACTIVITY_LOADGAME);
+      return;
     }
 
+    msg.what = DictionaryThread.MESSAGE_GET_NINELETTER;
+    switch (extras.getInt(NewGameActivity.NEWGAME_INTENT_WORDCOUNT)) {
+    case R.id.newWordCount1 :
+      msg.arg1 = 1;
+      msg.arg2 = 30;
+      break;
+    case R.id.newWordCount30 :
+      msg.arg1 = 30;
+      msg.arg2 = 75;
+      break;
+    case R.id.newWordCount75 :
+      msg.arg1 = 75;
+      msg.arg2 = 500;
+      break;
+    default :
+      return;
+    }
     this.InitPlayerWords();
     this.playerWordsAdapter.notifyDataSetChanged();
     this.showWordMessage("");
     this.timeRemaining.setText("");
     this.targetGrid.setVisibility(View.INVISIBLE);
-    this.countDown.enabled = extras.getBoolean("timed");
+    this.countDown.enabled = extras.getBoolean(NewGameActivity.NEWGAME_INTENT_TIMED);
     this.enteredWordBox.setText("");
     new File(MainActivity.this.getFilesDir().getPath() + MainActivity.saveFilename).delete();
     DictionaryThread.currentInstance.messageHandler.sendMessage(msg);

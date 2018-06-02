@@ -67,7 +67,7 @@ public class DictionaryThread implements Runnable {
             int maxSize = msg.arg2;
             int attempts = 0;
             do {
-              int random = (int) (Math.random() * nineLetterWords.size());
+              int random = (int) (Math.random() * nineLetterWords.size()-1);
               currentNineLetter = nineLetterWords.get(random);
               if (attempts++ > 100)
                 break;
