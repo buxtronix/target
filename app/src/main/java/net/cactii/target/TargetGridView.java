@@ -15,6 +15,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public class TargetGridView extends View implements OnTouchListener {
 
   public TargetGridView.LetterTouchedHandler _letterTouchedHandler = null;
@@ -217,6 +222,39 @@ public class TargetGridView extends View implements OnTouchListener {
         false, false, false, false, false};
     this.selectedword = new int[] {-1, -1, -1, -1, -1, -1, -1, -1, -1};
     invalidate();
+  }
+
+  public void shuffleGrid() {
+    char[] letterArray = this.letters.toCharArray();
+    char magicLetter = this.letters.charAt(4);
+    char[] otherLetters = new char[8];
+    int j = 0;
+    for (int i = 0 ; i < 9 ; i++) {
+      if (i != 4) {
+        otherLetters[j] = letterArray[i];
+        j++;
+      }
+    }
+
+    Random rnd = new Random();
+    for (int i = otherLetters.length - 1; i > 0; i--)
+    {
+      int index = rnd.nextInt(i + 1);
+      // Simple swap
+      char a = otherLetters[index];
+      otherLetters[index] = otherLetters[i];
+      otherLetters[i] = a;
+    }
+
+    this.letters = "";
+    for (int i = 0 ; i < 8 ; i++) {
+      this.letters = this.letters.concat(new String(Character.toString(otherLetters[i])));
+      if (i == 3) {
+        this.letters = this.letters.concat(new String(Character.toString(magicLetter)));
+      }
+    }
+    invalidate();
+    Log.d("target", "Letters are: " + otherLetters.toString());
   }
 
   // Returns the string of the currently tapped out word
