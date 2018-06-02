@@ -525,6 +525,9 @@ public class MainActivity extends Activity {
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
+    if (!super.onPrepareOptionsMenu(menu)) {
+      return false;
+    }
     if (!this.targetGrid.gameActive) {
       menu.getItem(2).setEnabled(false);
       menu.getItem(3).setEnabled(false);
