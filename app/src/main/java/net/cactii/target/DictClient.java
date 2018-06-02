@@ -15,10 +15,10 @@ import android.util.Log;
 
 public class DictClient implements Runnable {
 
-  public static final String DICT_SERVER = "216.93.242.2";
+  public static final String DICT_SERVER = "dict.org";
   public static final int DICT_PORT = 2628;
   public static final String DICT_DATABASE = "gcide";
-  public static final String DICT_CLIENT_NAME = "Android Target http://android-target.googlecode.com";
+  public static final String DICT_CLIENT_NAME = "Android Target https://github.com/buxtronix/target";
 
   public static final int RESULT_FOUND = 0;
   public static final int RESULT_NOTFOUND = 1;
