@@ -114,12 +114,14 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:visibility="invisible"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/enteredWord"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="#00DFDFC0"
                 android:cursorVisible="true"
+                android:inputType="textNoSuggestions"
+                android:focusable="false"
                 android:text=""
                 android:textColor="#FF000000"
                 android:textSize="28sp"
@@ -129,23 +131,14 @@
     <RelativeLayout
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_margin="10dp">
-        <TextView
-            android:id = "@+id/timeRemaining"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="25dp">
+        <Button
+            android:id="@+id/helpButton"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="#FF000000"
-            android:text=""/>
-        <Button
-            android:id="@+id/helpButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:textSize="16sp"
             android:text="..."/>
         <Button
@@ -160,7 +153,7 @@
             android:id="@+id/clearWord"
             android:layout_height="wrap_content"
             android:layout_width="100dp"
-            android:layout_toStartOf="@id/submitWord"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:textSize="16sp"
             android:text="  Del  "/>
@@ -168,9 +161,20 @@
             android:id="@+id/targetGrid"
             android:layout_width="225dp"
             android:layout_height="225dp"
-            android:layout_alignParentEnd="true"
-            android:layout_above="@id/submitWord"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:visibility="invisible" />
-
+        <TextView
+            android:id = "@+id/timeRemaining"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/targetGrid"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FF000000"
+            android:text=""/>
     </RelativeLayout>
 </LinearLayout>
