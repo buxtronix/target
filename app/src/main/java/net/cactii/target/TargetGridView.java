@@ -216,6 +216,11 @@ public class TargetGridView extends View implements OnTouchListener {
     }
   }
 
+  public void setActive(boolean active) {
+    gameActive = active;
+    clearGrid();
+  }
+
   // Unhighlights the entire grid
   public void clearGrid() {
     this.highlights = new boolean[] {false, false, false, false,

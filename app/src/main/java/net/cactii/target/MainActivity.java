@@ -389,7 +389,7 @@ public class MainActivity extends Activity {
 
   // Sets the game to active or inactive by disabling/enabling the controls
   public void setGameState(boolean state) {
-    this.targetGrid.gameActive = state;
+    this.targetGrid.setActive(state);
     this.submitWord.setEnabled(state);
     this.clearWord.setEnabled(state);
     this.playerWordList.setClickable(state);
@@ -521,6 +521,18 @@ public class MainActivity extends Activity {
     break;
     }
     return supRetVal;
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    if (!this.targetGrid.gameActive) {
+      menu.getItem(2).setEnabled(false);
+      menu.getItem(3).setEnabled(false);
+    } else {
+      menu.getItem(2).setEnabled(true);
+      menu.getItem(3).setEnabled(true);
+    }
+    return true;
   }
   
   protected void onActivityResult(int requestCode, int resultCode,
