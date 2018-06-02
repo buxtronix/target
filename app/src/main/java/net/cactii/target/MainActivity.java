@@ -463,6 +463,7 @@ public class MainActivity extends Activity {
   private static final int MENU_SCORE = 2;
   private static final int MENU_INSTRUCTIONS = 3;
   private static final int MENU_OPTIONS = 4;
+  private static final int MENU_SHUFFLE = 5;
 
 
   @Override
@@ -474,6 +475,8 @@ public class MainActivity extends Activity {
     menu_saveload.setIcon(R.drawable.menu_saveload);
     SubMenu menu_score = menu.addSubMenu(0, MENU_SCORE, 0, "Score game");
     menu_score.setIcon(R.drawable.menu_score);
+    SubMenu shuffle = menu.addSubMenu(0, MENU_SHUFFLE, 0, "Shuffle grid");
+    //menu_score.setIcon(R.drawable.menu_suffle);
     SubMenu menu_options = menu.addSubMenu(0, MENU_OPTIONS, 0, "Options");
     menu_options.setIcon(R.drawable.menu_options);
     SubMenu menu_help = menu.addSubMenu(0, MENU_INSTRUCTIONS, 0, "Help");
@@ -501,6 +504,9 @@ public class MainActivity extends Activity {
       }
       break;
     }
+    case MENU_SHUFFLE:
+        this.targetGrid.shuffleGrid();
+        break;
     case MENU_INSTRUCTIONS : {
       openHelpDialog();
       break;
