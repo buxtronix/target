@@ -21,7 +21,7 @@
 			>
 			<TextView
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:textColor="#FF000000"
 				android:layout_height="wrap_content"
 				android:textStyle="bold"
@@ -29,7 +29,7 @@
 			<TextView
 				android:id = "@+id/targetCountGood"
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:textColor="#FF000000"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
@@ -37,7 +37,7 @@
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_marginTop="5dp"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:textColor="#FF000000"
 				android:layout_height="wrap_content"
 				android:textStyle="bold"
@@ -45,14 +45,14 @@
 			<TextView
 				android:id = "@+id/targetCountVeryGood"
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:textColor="#FF000000"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:text=""/>
 			<TextView
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:layout_marginTop="5dp"
 				android:textColor="#FF000000"
 				android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
 			<TextView
 				android:id = "@+id/targetCountExcellent"
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:textColor="#FF000000"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
@@ -69,7 +69,7 @@
 			<TextView
 				android:id = "@+id/targetCountPlayerLabel"
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:layout_marginTop="5dp"
 				android:textColor="#FF007F00"
 				android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
 			<TextView
 				android:id = "@+id/targetCountPlayer"
 				android:layout_width="wrap_content"
-				android:textSize="16sp"
+				android:textSize="24sp"
 				android:textColor="#FF007F00"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
@@ -86,8 +86,8 @@
 		 </LinearLayout>
 		<net.cactii.target.TargetGridView
 			android:id="@+id/targetGrid"
-			android:layout_width="225dp"
-			android:layout_height="225dp"
+			android:layout_width="300dp"
+			android:layout_height="300dp"
 			android:layout_alignParentEnd="true"
 			android:layout_margin="10dp"
 			android:gravity="end"
@@ -122,27 +122,28 @@
 				android:cursorVisible="true"
 				android:text=""
 				android:textColor="#FF000000"
-				android:textSize="28sp"
+				android:textSize="36sp"
 				android:textStyle="bold" />
 		</RelativeLayout>
+
 		<Button
 			android:id="@+id/clearWord"
-			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:gravity="center"
-			android:textSize="16sp"
-			android:text="  Del  "/>
+			android:padding="15dp"
+			android:text="  Del  "
+			android:textSize="24sp" />
 	</LinearLayout>
 
 	<RelativeLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:background="@android:color/holo_purple"
-		android:layout_margin="10dp">
+		android:layout_marginBottom="50dp">
 
 		<ListView
 			android:id="@+id/playerWordList"
-			android:layout_width="200dp"
+			android:layout_width="250dp"
 			android:layout_height="fill_parent"
 			android:layout_alignParentStart="true"
 			android:cacheColorHint="#00000000"
@@ -150,13 +151,14 @@
 
 		<Button
 			android:id="@+id/submitWord"
-			android:layout_width="100dp"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentEnd="true"
 			android:layout_alignParentTop="true"
 			android:layout_margin="10dp"
+			android:padding="25dp"
 			android:text="Submit"
-			android:textSize="16sp" />
+			android:textSize="24sp" />
 
 		<TextView
 			android:id="@+id/timeRemaining"
@@ -167,17 +169,17 @@
 			android:gravity="center"
 			android:text=""
 			android:textColor="#FF000000"
-			android:textSize="24sp"
+			android:textSize="36sp"
 			android:textStyle="bold" />
 
 		<Button
 			android:id="@+id/helpButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
 			android:layout_alignParentBottom="true"
-			android:layout_margin="10dp"
+			android:layout_alignParentEnd="true"
+			android:layout_marginBottom="50dp"
 			android:text="..."
-			android:textSize="16sp" />
+			android:textSize="24sp" />
 	</RelativeLayout>
 </LinearLayout>

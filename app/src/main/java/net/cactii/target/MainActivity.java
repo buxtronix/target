@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -130,7 +131,7 @@ public class MainActivity extends Activity {
     this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-    
+
     MainActivity.setCurrent(this);
     boolean invertLayout = PreferenceManager.getDefaultSharedPreferences(MainActivity.currentInstance).getBoolean("invert", false);
     if (invertLayout) {
@@ -465,6 +466,19 @@ public class MainActivity extends Activity {
   private static final int MENU_OPTIONS = 4;
   private static final int MENU_SHUFFLE = 5;
 
+  @Override
+  public void openOptionsMenu() {
+    super.openOptionsMenu();
+    Configuration config = getResources().getConfiguration();
+    if ((config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) > Configuration.SCREENLAYOUT_SIZE_LARGE) {
+      int originalScreenLayout = config.screenLayout;
+      config.screenLayout = Configuration.SCREENLAYOUT_SIZE_LARGE;
+      super.openOptionsMenu();
+      config.screenLayout = originalScreenLayout;
+    } else {
+      super.openOptionsMenu();
+    }
+  }
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
