@@ -37,7 +37,7 @@ public class NineLetterWord {
     for (int i = 0 ; i < 9 ; i++) {
       byte[] letter = new byte[1];
       letter[0] = this.wordArray[i];
-      this.wordCounts.put(new String(letter), new Integer(this.wordCountsArray[i]));
+      this.wordCounts.put(new String(letter), Integer.valueOf(this.wordCountsArray[i]));
     }
   }
   

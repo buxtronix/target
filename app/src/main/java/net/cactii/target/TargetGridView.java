@@ -15,9 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 public class TargetGridView extends View implements OnTouchListener {
@@ -253,9 +250,10 @@ public class TargetGridView extends View implements OnTouchListener {
 
     this.letters = "";
     for (int i = 0 ; i < 8 ; i++) {
-      this.letters = this.letters.concat(new String(Character.toString(otherLetters[i])));
+      this.letters = this.letters.concat(Character.toString(otherLetters[i]));
       if (i == 3) {
-        this.letters = this.letters.concat(new String(Character.toString(magicLetter)));
+        this.letters = this.letters.concat(Character.toString(magicLetter));
+
       }
     }
     invalidate();
@@ -288,7 +286,7 @@ public class TargetGridView extends View implements OnTouchListener {
   //
   // Finally calls the LetterTouchedHandler for further actions.
   public boolean onTouch(View v, MotionEvent event) {
-    if (this.gameActive == false)
+    if (!this.gameActive)
       return false;
     switch(event.getAction()) {
       case MotionEvent.ACTION_DOWN : {
@@ -352,9 +350,6 @@ public class TargetGridView extends View implements OnTouchListener {
     if (col > 2) col = 2;
     if (col < 0) col = 0;
 
-    int index = row*3 + col;
-
-    // Log.d("Target", "Row " + row + ", col " + col + ", index " + index);
-    return index;
+    return row*3 + col;
   }
 }

@@ -98,7 +98,7 @@ public class NewGameActivity extends Activity {
           return;
         }
         prefeditor.putBoolean("timed_game", newGameTimed.isChecked());
-        prefeditor.commit();
+        prefeditor.apply();
         Intent i = new Intent().
         putExtra(NEWGAME_INTENT_WORDCOUNT, newGameWordCount.getCheckedRadioButtonId()).
         putExtra(NEWGAME_INTENT_TIMED, newGameTimed.isChecked());
@@ -222,7 +222,7 @@ public class NewGameActivity extends Activity {
     int current_version = getVersionNumber();
     if (pref_version == -1 || pref_version != current_version) {
       prefeditor.putInt("currentversion", current_version);
-      prefeditor.commit();
+      prefeditor.apply();
       this.openChangesDialog();
     }
   }

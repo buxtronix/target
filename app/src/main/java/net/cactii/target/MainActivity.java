@@ -16,7 +16,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -39,7 +38,6 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -79,7 +77,6 @@ public class MainActivity extends Activity {
   private Button helpButton;
   
   // Player word count display
-  private TextView playerWordCountLabel;
   private TextView playerWordCountText;
   
   // 'Submit' button.
@@ -146,7 +143,6 @@ public class MainActivity extends Activity {
     this.submitWord = (Button)findViewById(R.id.submitWord);
     this.playerWordList = (ListView)findViewById(R.id.playerWordList);
     
-    this.playerWordCountLabel = (TextView)findViewById(R.id.targetCountPlayerLabel);
     this.playerWordCountText = (TextView)findViewById(R.id.targetCountPlayer);
 
     // Configure the countdown timer
@@ -221,7 +217,7 @@ public class MainActivity extends Activity {
     	  PlayerWord word = MainActivity.this.playerWords.get(position);
     	  MainActivity.this.currentSelectedWord = word;
     		String[] choices = new String[1];
-    		choices[0] = new String("Find definition (network)");
+    		choices[0] = "Find definition (network)";
     		new AlertDialog.Builder(view.getContext())
         .setTitle("Selected: " + word.word)
         .setItems(choices, new DialogInterface.OnClickListener() {
@@ -301,7 +297,7 @@ public class MainActivity extends Activity {
       message = "Must contain the middle letter: " + DictionaryThread.currentInstance.currentNineLetter.magicLetter;
     else if (this.playerHasWord(word))
       message = "You already have that word.";
-    if (message != "") {
+    if (!message.equals("")) {
       Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
       return;
     }
@@ -414,7 +410,7 @@ public class MainActivity extends Activity {
 
     playerWordCountText.setText(playerWords + " words");
     
-    if (numWords > 0 && this.targetGrid.gameActive == false) {
+    if (numWords > 0 && !this.targetGrid.gameActive) {
       if (playerWords >= excellent)
         showWordMessage("EXCELLENT!");
       else if (playerWords >= vgood)
@@ -674,8 +670,8 @@ public class MainActivity extends Activity {
   
     // Then show all other missed words
     for (String validWord : DictionaryThread.currentInstance.validWords) {
-      if (playerHasWord(validWord) == false &&
-          validWord != DictionaryThread.currentInstance.currentNineLetter.word) {
+      if (!playerHasWord(validWord) &&
+          !validWord.equals(DictionaryThread.currentInstance.currentNineLetter.word)) {
         PlayerWord resultWord = new PlayerWord(validWord);
         resultWord.result = PlayerWord.RESULT_MISSED;
         this.playerWords.add(resultWord);
